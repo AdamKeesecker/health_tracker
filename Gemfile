@@ -38,3 +38,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
