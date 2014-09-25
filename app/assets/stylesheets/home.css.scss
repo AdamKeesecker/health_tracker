@@ -30,25 +30,49 @@ body{
   #main_page_container{
     background-image: image-url("lab.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    overflow: visible;
+    background-size: cover;
     z-index:-1;
     margin-top:-10px;
     height:95%;
     width:100%;
     position:absolute;
     bottom: 0px;
-    #text_overlay{
-      margin-top: 75px;
-      margin-left:15%;
-      background-color: rgba(120,120,120,0.65);
-      width:33%;
-      padding: 0px 0px 0px 20px;
-      #head{
-        text-align: center;
+    #tagline{
+      background-color: rgba(206, 206, 206, 0.75);
+      width: 98.5%;
+      margin-top: -0.1px;
+      text-align: center;
+    }
+    #text_wrap{
+      margin-top:75px;
+      overflow: auto;
+      #about{
+        float:right;
+        width:50%;
+        height: 471px;
+        padding: 20px 20px 0px 20px;
+        background-color: rgba(206, 206, 206, 0.75);
+        text-align: right;
+        #specf_about{
+          text-align: center;
+        }
       }
-      #sub_text{
-        text-align: center;
+      #text_overlay{
+        height: 471px;
+        float:left;
+        width:50%;
+        padding: 0px 0px 0px 45px;
+        background-color: rgba(206, 206, 206, 0.75);
+        #head{
+          text-align: center;
+        }
+        #sub_text{
+          text-align: center;
+        }
+        #logo{
+          width:100%;
+          padding-right: 20px;
+        }
       }
     }
   }
