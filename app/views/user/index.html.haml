@@ -1,0 +1,188 @@
+#tracker_container
+  - if current_user.token.nil? && current_user.secret.nil? && current_user.uid.nil?
+    #text
+      %h4 Uh-oh! Your account hasn't been linked yet! Don't worry, we'll help you out.
+      %h4 Please click the link below to set up account:
+      = link_to "Link account", user_omniauth_authorize_path(:fitbit)
+  - else
+    #massive_container
+      :javascript
+        function showOrHide(chart){
+          console.log(chart+"_container");
+          $('.chart').removeClass("active");
+          $('.chart').addClass("hidden");
+          $("#"+chart+"_container").removeClass("hidden");
+          $("#"+chart+"_container").addClass("active");
+        };
+      .button#steps{:onclick => "showOrHide('step')"} Steps
+      .button#calories{:onclick => "showOrHide('calories')"} Calories
+      .button#distance{:onclick => "showOrHide('distance')"} Distance
+      -# .button#goals{:onclick => "showOrHide('goals')"} Goals
+
+      #step_container.chart.active
+        :javascript
+          var t = new Date();
+          var today = t.getDay();
+          $('#step_container').highcharts({
+            chart: {
+              type: 'area'
+            },
+            title: {
+              text: 'Weekly Steps'
+            },
+            xAxis: {
+              type: "datetime",
+              labels: {
+                formatter: function(){
+                  return Highcharts.dateFormat('%a', this.value);
+                }
+              },
+              tickPixelInterval: 50,
+              title: {
+                text: 'Days this week'
+              }
+            },
+            yAxis: {
+              title: {
+                text: 'Total Steps'
+              }
+            },
+            series: [{
+              name: 'Your Steps',
+              pointInterval: 24 * 3600 * 1000,
+              data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
+              // data: gon.steps.map(function(data){return data.value}),
+              color:'#51de98',
+              zIndex:2,
+            }, {
+              name: 'Recommended Steps',
+              pointInterval: 24 * 3600 * 1000,
+              data: [8000, 8000, 8000, 8000, 8000, 8000, 8000],
+              color: '#17367e',
+              zIndex:1,
+            }]
+          });
+
+      #calories_container.chart.hidden
+        :javascript
+          var t = new Date();
+          var today = t.getDay();
+          $('#calories_container').highcharts({
+            chart: {
+              type: 'area'
+            },
+            title: {
+              text: 'Weekly Calories'
+            },
+            xAxis: {
+              type: "datetime",
+              tickPixelInterval: 50,
+              labels: {
+                formatter: function(){
+                  return Highcharts.dateFormat('%a', this.value);
+                }
+              },
+              title: {
+                text: 'Days this week'
+              }
+            },
+            yAxis: {
+              title: {
+                text: 'Total Calories'
+              }
+            },
+            series: [{
+              name: 'Your Calories',
+              pointInterval: 24 * 3600 * 1000,
+              data: [2900, 1800, 2000, 2500, 3500, 3000, 2300],
+              // data: gon.calories.map(function(data){return data.value}),
+              color: '#1cab2b',
+              zIndex:4,
+            }, {
+              name: "Male's Recommended Calories",
+              pointInterval: 24 * 3600 * 1000,
+              data: [2500, 2500, 2500, 2500, 2500, 2500, 2500],
+              color: '#1433fa',
+              zIndex: 2,
+            }, {
+              name: "Female's Recommended Calories",
+              pointInterval: 24 * 3600 * 1000,
+              data: [2000, 2000, 2000, 2000, 2000, 2000, 2000],
+              color: '#fff304',
+              zIndex: 3,
+              }]
+          });
+      #distance_container.chart.hidden
+        :javascript
+          var t = new Date();
+          var today = t.getDay();
+          $('#distance_container').highcharts({
+            chart: {
+              type: 'area'
+            },
+            title: {
+              text: 'Distance Travelled'
+            },
+            xAxis: {
+              type: "datetime",
+              labels: {
+                formatter: function(){
+                  return Highcharts.dateFormat('%a', this.value);
+                }
+              },
+              tickPixelInterval: 50,
+              title: {
+                text: 'Days this week'
+              }
+            },
+            yAxis: {
+              title: {
+                text: 'Total Calories'
+              }
+            },
+            series: [{
+              name: 'Your Distance',
+              pointInterval: 24 * 3600 * 1000,
+              data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
+              // data: gon.distance.map(function(data){return data.value}),
+              color: '#1cab2b',
+              zIndex:1,
+              }]
+          });
+      -# #goals_container.chart.hidden
+      -#   :javascript
+      -#     var t = new Date();
+      -#     var today = t.getDay();
+      -#     $('#goals_container').highcharts({
+      -#       chart: {
+      -#         type: 'area'
+      -#       },
+      -#       title: {
+      -#         text: 'Personal Goals'
+      -#       },
+      -#       xAxis: {
+      -#         type: "datetime",
+      -#         labels: {
+      -#           formatter: function(){
+      -#             return Highcharts.dateFormat('%a', this.value);
+      -#           }
+      -#         },
+      -#         tickPixelInterval: 50,
+      -#         title: {
+      -#           text: 'Days this week'
+      -#         }
+      -#       },
+      -#       yAxis: {
+      -#         title: {
+      -#           text: 'Goal'
+      -#         }
+      -#       },
+      -#       series: [{
+      -#         name: 'Your Distance',
+      -#         pointInterval: 24 * 3600 * 1000,
+      -#         data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
+      -#         // data: gon.distance.map(function(data){return data.value}),
+      -#         color: '#1cab2b',
+      -#         zIndex:1,
+      -#         }]
+      -#     });
