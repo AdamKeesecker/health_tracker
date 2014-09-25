@@ -9,7 +9,6 @@ gem 'simple_form'
 gem 'omniauth-fitbit'
 gem 'fitgem'
 gem 'httparty', group: :development
-gem 'figaro'
 gem 'pg'
 gem 'gon'
 
@@ -26,6 +25,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'letter_opener'
   gem 'pry-rails'
+  gem 'pry-nav'
   gem 'launchy'
 end
 

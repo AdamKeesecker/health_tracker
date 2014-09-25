@@ -15,6 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def get_client
-    Fitgem::Client.new(access_token: token, consumer_key: 'bac7a823979b4dddb95cd3cb265ab135', consumer_secret: '84ada8354c1043e9b68d3200047b611c', token: self.token, secret: self.secret)
+    Fitgem::Client.new(user_id: self.uid, consumer_key: "bac7a823979b4dddb95cd3cb265ab135", consumer_secret: "84ada8354c1043e9b68d3200047b611c", token: self.token, secret: self.secret)
   end
 end
