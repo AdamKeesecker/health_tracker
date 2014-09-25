@@ -6,9 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:fitbit]
 
   def update_with_fitbit_oauth(auth)
-    puts "============================================="
-    puts auth
-    puts "============================================="
     auth_token = auth.credentials.token
     auth_secret = auth.credentials.secret
     self.token = auth_token
@@ -18,6 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def get_client
-    Fitgem::Client.new(access_token: token, consumer_key: '34d51b630f8f4497995ad847f2de94db', consumer_secret: '22f950c07e2a446da3cbb1dcce710d03', token: self.token, secret: self.secret)
+    Fitgem::Client.new(access_token: token, consumer_key: 'bac7a823979b4dddb95cd3cb265ab135', consumer_secret: '84ada8354c1043e9b68d3200047b611c', token: self.token, secret: self.secret)
   end
 end

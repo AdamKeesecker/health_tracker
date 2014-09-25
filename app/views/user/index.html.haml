@@ -14,9 +14,10 @@
           $("#"+chart+"_container").removeClass("hidden");
           $("#"+chart+"_container").addClass("active");
         };
-      .button#steps{:onclick => "showOrHide('step')"} Steps
-      .button#calories{:onclick => "showOrHide('calories')"} Calories
-      .button#distance{:onclick => "showOrHide('distance')"} Distance
+      #button_container
+        .button#steps{:onclick => "showOrHide('step')"} Steps
+        .button#calories{:onclick => "showOrHide('calories')"} Calories
+        .button#distance{:onclick => "showOrHide('distance')"} Distance
       -# .button#goals{:onclick => "showOrHide('goals')"} Goals
 
       #step_container.chart.active
@@ -50,8 +51,8 @@
             series: [{
               name: 'Your Steps',
               pointInterval: 24 * 3600 * 1000,
-              data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
-              // data: gon.steps.map(function(data){return data.value}),
+              // data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
+              data: gon.steps.map(function(data){return data.value}),
               color:'#51de98',
               zIndex:2,
             }, {
@@ -94,8 +95,8 @@
             series: [{
               name: 'Your Calories',
               pointInterval: 24 * 3600 * 1000,
-              data: [2900, 1800, 2000, 2500, 3500, 3000, 2300],
-              // data: gon.calories.map(function(data){return data.value}),
+              // data: [2900, 1800, 2000, 2500, 3500, 3000, 2300],
+              data: gon.calories.map(function(data){return data.value}),
               color: '#1cab2b',
               zIndex:4,
             }, {
@@ -143,8 +144,8 @@
             series: [{
               name: 'Your Distance',
               pointInterval: 24 * 3600 * 1000,
-              data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
-              // data: gon.distance.map(function(data){return data.value}),
+              // data: [7900, 8000, 8100, 8500, 7500, 7000, 9000],
+              data: gon.distance.map(function(data){return data.value}),
               color: '#1cab2b',
               zIndex:1,
               }]
