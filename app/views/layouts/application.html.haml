@@ -5,15 +5,20 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "Spy MD"
     = stylesheet_link_tag    "application"
+    = include_gon
     = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = javascript_include_tag "http://code.highcharts.com/highcharts.js"
+
     = csrf_meta_tags
+
   %body
     %div.sticky
       %nav.top-bar{"data-topbar" => "", :role => "navigation"}
         %ul.title-area
           %li.name
             %h1
-              =image_tag "spyInverse.jpg", class: "logo", id: "thumbnail"
+              =image_tag "spyCrossInverse.jpg", class: "logo", id: "thumbnail"
           %li.toggle-topbar.menu-icon
             %a{:href => "root_path"}
         %section.top-bar-section
@@ -22,7 +27,8 @@
             %li
               =link_to "Home", root_path
             %li
-              =link_to "Tracker", tracker_path
+              - if user_signed_in?
+                =link_to "Tracker", tracker_path
           %ul.right
             - if user_signed_in?
               %li#email
@@ -39,4 +45,3 @@
     - if alert
       .alert-box.alert= alert
     = yield
-    = javascript_include_tag "application"
